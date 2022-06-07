@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 
     public Transform GroundCheck;
 
-    public GameObject blueGem, greenGem;
 
     public Main main;
 
@@ -32,7 +31,6 @@ public class Player : MonoBehaviour
     public Sprite emptyHeart;
 
     int coins = 0;
-    int gemCount = 0;
 
     bool isGrounded;
     bool isHit = false;
@@ -43,22 +41,9 @@ public class Player : MonoBehaviour
     public Image coinCounterTens;
     public Sprite[] numbers = new Sprite[10];
 
-    enum Elements
-    {
-        WATER,
-        FIRE,
-        WIND,
-        EARTH,
-        LIGHTNING
-    };
+
     public bool[] canChange = { true, false, false, false, false };
-    public int checkElement;
-    public Image currentElement;
-    public Sprite waterElement;
-    public Sprite fireElement;
-    public Sprite windElement;
-    public Sprite earthElement;
-    public Sprite lightningElement;
+
 
 
     void Start() //при старте игры имеем:
@@ -66,7 +51,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); //физ тело
         anim = GetComponent<Animator>(); //вмещает компонент аниматор типа анимации лол
         curHP = maxHP; //запас опред. кол-ва жизе
-        checkElement = ((int)Elements.WATER);//текущий элемент - вода
     }
     
     void Update() //во время
@@ -115,24 +99,6 @@ public class Player : MonoBehaviour
                 hearts[i].enabled = false;*/
         }
 
-        if (Input.GetKeyDown(KeyCode.F))//смена стихии
-        {
-            if (checkElement >= 4 && canChange[0])
-                checkElement = 0;
-            else if (canChange[checkElement + 1])
-                checkElement++;
-            else checkElement = 0;
-        }
-
-        //отображение стихии
-        switch (checkElement)
-        {
-            case 0: currentElement.sprite = waterElement; break;
-            case 1: currentElement.sprite = fireElement; break;
-            case 2: currentElement.sprite = windElement; break;
-            case 3: currentElement.sprite = earthElement; break;
-            case 4: currentElement.sprite = lightningElement; break;
-        }
 
         //отображение кол-ва монет
         switch (coins%10)
@@ -297,24 +263,6 @@ public class Player : MonoBehaviour
 
         }
 
-        if (collision.gameObject.tag == "Mushroom") //если столкнулись с мухомором
-        {
-            RecountHP(-1); //отнимаем 1хп
-            Destroy(collision.gameObject); //удаляем гриб
-        }
-
-        if (collision.gameObject.tag == "BlueGem") //если столкнулись с голубым кристаллом
-        {
-            StartCoroutine(NoHit()); //карутина на неуязвимость
-            Destroy(collision.gameObject); //удаляем кристалл
-
-        }
-
-        if (collision.gameObject.tag == "GreenGem") //если столкнулись с зеленым кристаллом
-        {
-            StartCoroutine(SpeedBonus()); //карутина на скорость 
-            Destroy(collision.gameObject); //удаляем кристалл
-        }
     }
 
     IEnumerator TPwait() //карутина на телепорт
@@ -341,85 +289,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision) //метод на то, чтобы не улетать потом, тк мы же гравитацию пофиксили на лестнице
-    {
-        if(collision.gameObject.tag != "ladder") //вот тут тэг на лестницу
-        {
-            isClimbing = false; 
-            rb.bodyType = RigidbodyType2D.Dynamic; //а это мы тип динамические челы
-        }
-    }
 
-    private void OnCollisionEnter2D(Collision2D collision) //запуск карутины анимации батута
-    {
-        if (collision.gameObject.tag == "Trampoline") //если объект столкновения трамплин
-        {
-            StartCoroutine(TrampolineAnim(collision.gameObject.GetComponentInParent<Animator>())); //старт карутины трамплина
-        }
-    }
 
-    IEnumerator TrampolineAnim(Animator an) //карутина трамплина
-    {
-        an.SetBool("isJump", true); //если прыгает
-        yield return new WaitForSeconds(0.5f); //ждем сек
-        an.SetBool("isJump", false); //терь не прыгает
-    }
 
-    IEnumerator NoHit() //карутина на неуязвимость
-    {
-        gemCount++; //счетчик баффов
-        blueGem.SetActive(true); //активируем значек кристалла
-        CheckGems(blueGem); //проверка
 
-        canHit = false; //мы неуязвимы
-        blueGem.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); //терь ждем 4 сек
-        print("Неуязвимость активирована"); //вывод
-        yield return new WaitForSeconds(4f); //время сколько мы неуязвимы
-        StartCoroutine(Invis(blueGem.GetComponent<SpriteRenderer>(), 0.02f));  //старт карутины
-        yield return new WaitForSeconds(1f); // ждем пока пройдет анимация
-        canHit = true; //терь мы уязвимы
-        print("Персонаж уязвим к атакам"); //вывод
 
-        gemCount--;
 
-        blueGem.SetActive(false); //терь мы деактивируем значек кристалла
-        CheckGems(greenGem);//ghjdthrf
-    }
-
-    IEnumerator SpeedBonus() //карутина на скорость
-    {
-        gemCount++; //добавляем бонус
-        greenGem.SetActive(true); //активируем бонус
-        CheckGems(greenGem); //проверка
-
-        speed = speed * 2; //увеличиваем скорость
-        greenGem.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f); //делаем все по мак ярк
-        print("Скорость увеличена в 2 раза"); //вывод
-        yield return new WaitForSeconds(4f); //время сколько мы бегаем
-        StartCoroutine(Invis(greenGem.GetComponent<SpriteRenderer>(), 0.02f)); //старт карутины на удаление бафа
-        speed = speed / 2; //терь мы возвращаем норм скорость
-        yield return new WaitForSeconds(1f); //ждем пока пройдет карутина
-        print("Бафф на скорость закончился"); //выводо
-
-        gemCount--; //отнимаем в счетчике баффов
-        greenGem.SetActive(false); //деактивируем бафф
-
-        CheckGems(blueGem); //проверяем голубой баф
-    }
-
-    void CheckGems(GameObject obj) //метод на позиции кристаллов
-    {
-        if(gemCount == 1)
-        {
-            obj.transform.localPosition = new Vector3(0f, 0.7f, obj.transform.localPosition.z); //устанавливаем позицию кристалла, когда он 1
-        }
-
-        else if (gemCount == 2)
-        {
-            blueGem.transform.localPosition = new Vector3(0.5f, 0.5f, blueGem.transform.localPosition.z); //позиция голубого кристалла
-            greenGem.transform.localPosition = new Vector3(-0.5f, 0.5f, greenGem.transform.localPosition.z); //позиция зеленого кристалла
-        }
-    }
 
     IEnumerator Invis(SpriteRenderer spr, float time) //карутина исчезновения кристаллов
     {

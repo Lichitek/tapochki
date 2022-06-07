@@ -9,6 +9,7 @@ TagManager:
   - Trampoline
   - Coin
   - Heart
+  - mark
   layers:
   - Default
   - TransparentFX

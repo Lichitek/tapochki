@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //в начале столкновения
     {
-        if ((collision.gameObject.tag == "Player") && !isHit && (collision.gameObject.GetComponent<Player>().checkElement == (int)Elements.WATER) && (checkElement == (int)Elements.FIRE)) //объект столкновения = player ОБЯЗАТЕЛЬНО
+        if ((collision.gameObject.tag == "Player") && !isHit) //объект столкновения = player ОБЯЗАТЕЛЬНО
         {
             collision.gameObject.GetComponent<Player>().RecountHP(-1); //уменьшаем хп на 1 
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 8f, ForceMode2D.Impulse); //типа отталкиваемся от того, что нас коцает

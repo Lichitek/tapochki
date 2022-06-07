@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Heart
   - mark
+  - block
   layers:
   - Default
   - TransparentFX

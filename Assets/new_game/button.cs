@@ -32,5 +32,18 @@ public class button : MonoBehaviour
                 Destroy(obj); //удаляем
             }
         }
+        if (collision.gameObject.tag == "block") //если объект столкновения коробка
+        {
+
+            GetComponent<SpriteRenderer>().sprite = btnDown; //присваиваем новый спрайт
+            GetComponent<BoxCollider2D>().enabled = false; //выключаем коллайдер, когда кнопка вкл
+            collision.gameObject.GetComponent<Rigidbody2D>().Sleep();
+
+            foreach (GameObject obj in block) //цикл для каждого объекта ля удаления, после вкл кнопки
+            {
+                Destroy(obj); //удаляем
+            }
+        }
+
     }
 }

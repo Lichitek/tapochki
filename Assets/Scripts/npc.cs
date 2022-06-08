@@ -30,7 +30,7 @@ public class npc : MonoBehaviour
         if(playerInRange)
         {
             Vector2 pos = this.gameObject.transform.position;
-            hintBox.transform.localPosition = new Vector2(target.transform.localPosition.x, target.transform.localPosition.y + 75); ; //53.7f *(pos + new Vector2(0, 1.5f));//Поменять позицию
+            hintBox.transform.localPosition = new Vector2(target.transform.localPosition.x, target.transform.localPosition.y + 75);//53.7f *(pos + new Vector2(0, 1.5f));//Поменять позицию
             if (dialogBox.activeInHierarchy)
             {
                 hintBox.SetActive(false);

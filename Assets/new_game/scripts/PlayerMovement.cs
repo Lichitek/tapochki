@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour 
+{
 
 	public CharacterController2D controller;
 	public Animator animator;
@@ -11,10 +12,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	float horizontalMove = 0f;
 	bool jump = false;
-	bool crouch = false;
+
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -25,9 +27,6 @@ public class PlayerMovement : MonoBehaviour {
 			jump = true;
 			animator.SetBool("IsJumping", true);
 		}
-
-
-
 	}
 
 	public void OnLanding ()

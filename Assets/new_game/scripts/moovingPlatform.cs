@@ -8,13 +8,13 @@ public class moovingPlatform : MonoBehaviour
     public float speed;
     public int startPoint;
     public Transform[] points;
+    public GameObject grnChek;
 
     private int i;
 
     void Start()
     {
         transform.position = points[startPoint].position;
-
     }
 
     void Update()
@@ -27,14 +27,15 @@ public class moovingPlatform : MonoBehaviour
                 i = 0;
             }
         }
-
-        transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
-        
+        transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.transform.SetParent(transform);
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.transform.SetParent(transform);            
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

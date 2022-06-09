@@ -16,7 +16,6 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Collider2D m_CrouchDisableCollider;				
 	const float k_GroundedRadius = .2f; 
 	private bool m_Grounded;            
-	const float k_CeilingRadius = .2f; 
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  
 	private Vector3 m_Velocity = Vector3.zero;
@@ -126,10 +125,10 @@ public class CharacterController2D : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision) //метод на телепорт 
+	private void OnTriggerEnter2D(Collider2D collision) 
     {
         
-        if (collision.gameObject.tag == "Coin") //если столкнулись с ключем
+        if (collision.gameObject.tag == "Coin") 
         {
             coins++; //(ведем счет монет)
             Destroy(collision.gameObject); //удалили ключ
@@ -140,7 +139,10 @@ public class CharacterController2D : MonoBehaviour
 		{
 			Time.timeScale = 0f;
 		}
-
+		if(collision.gameObject.tag=="movingSlab")
+        {
+			//m_GroundCheck.GetComponent<CircleCollider2D>().enabled = false;
+        }
 
 	}
 }

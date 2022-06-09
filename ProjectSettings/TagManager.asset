@@ -11,6 +11,8 @@ TagManager:
   - Heart
   - mark
   - block
+  - movingSlab
+  - Mirror
   layers:
   - Default
   - TransparentFX

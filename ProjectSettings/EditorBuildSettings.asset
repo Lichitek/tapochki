@@ -5,16 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Menu.unity
-    guid: b0f2d28c1a817ab4583d7ff6434d53c6
-  - enabled: 0
-    path: Assets/Scenes/Cutscene.unity
-    guid: e0df3d40b28cd9543bda5fc4d49519cb
   - enabled: 1
-    path: Assets/Scenes/1st_scene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/Last.unity
-    guid: fa000ecb37b9db5459092871d79017fb
+    path: Assets/new_game/new_scence/main.unity
+    guid: 44911c1b7cda4144d81f4f4d934a8b2c
+  - enabled: 1
+    path: Assets/new_game/new_scence/lev1.unity
+    guid: 12f0b3101bf8b974791cd821355fc41b
+  - enabled: 1
+    path: Assets/new_game/new_scence/lev2.unity
+    guid: eb6c183a09c41794caf8ff8dbfbe7517
+  - enabled: 1
+    path: Assets/new_game/new_scence/lev3.unity
+    guid: 03ae39770fd2499449abb8c077d74b68
+  - enabled: 1
+    path: Assets/new_game/new_scence/lev4.unity
+    guid: 24c9e9a70807fcf4bbe16d1d749020fd
+  - enabled: 1
+    path: Assets/new_game/new_scence/lev5.unity
+    guid: 7d57ce6044f4b9f4a8b955b8292f79d8
   m_configObjects: {}

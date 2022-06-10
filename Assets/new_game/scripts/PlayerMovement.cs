@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
 	float horizontalMove = 0f;
 	bool jump = false;
+	bool chekin = false;
 
 
 	// Update is called once per frame
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetButtonDown("Jump") && chekin)
 		{
 			jump = true;
 			animator.SetBool("IsJumping", true);
@@ -41,5 +42,22 @@ public class PlayerMovement : MonoBehaviour
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
 		jump = false;
+	}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+		if (collision.gameObject.tag == "ground") 
+		{
+			chekin = true;
+
+		}
+	}
+
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "ground")
+		{
+			chekin = false;
+
+		}
 	}
 }

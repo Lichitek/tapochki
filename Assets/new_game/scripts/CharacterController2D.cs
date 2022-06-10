@@ -46,7 +46,8 @@ public class CharacterController2D : MonoBehaviour
 
 	}
 
-	private void FixedUpdate()
+
+    private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
@@ -132,12 +133,16 @@ public class CharacterController2D : MonoBehaviour
         {
             coins++; //(ведем счет монет)
             Destroy(collision.gameObject); //удалили ключ
+			dataBank.score[0] = coins;
             print("Количество монет: " + coins); //добавили монету в карман (счетчик на экране)
         }
 
 		if (collision.gameObject.tag == "Enemy") //если столкнулись с ключем
 		{
+			coins = 0;
 			Time.timeScale = 0f;
+			dataBank.isgame = false;
+
 		}
 		if(collision.gameObject.tag=="movingSlab")
         {

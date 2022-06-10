@@ -195,7 +195,7 @@ using UnityEngine;
 
 public class LaserBeam
 {
-    Vector2 pos, dir;
+    Vector3 pos, dir;
 
     public GameObject laserObj;
     LineRenderer laser;
@@ -208,7 +208,7 @@ public class LaserBeam
         { "STFZ", 2.1862f },
         { "Custom", 1.1f}
     };
-    public LaserBeam(Vector2 pos, Vector2 dir, Material material)
+    public LaserBeam(Vector3 pos, Vector3 dir, Material material)
     {
         this.laser = new LineRenderer();
         this.laserObj = new GameObject();
@@ -226,7 +226,7 @@ public class LaserBeam
         CastRay(pos, dir, laser);
     }
 
-    void CastRay(Vector2 pos, Vector2 dir, LineRenderer laser)
+    void CastRay(Vector3 pos, Vector3 dir, LineRenderer laser)
     {
         laserIndices.Add(pos);
 

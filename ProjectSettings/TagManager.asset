@@ -13,6 +13,7 @@ TagManager:
   - block
   - movingSlab
   - Mirror
+  - ground
   layers:
   - Default
   - TransparentFX

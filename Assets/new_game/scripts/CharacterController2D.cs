@@ -135,6 +135,7 @@ public class CharacterController2D : MonoBehaviour
             Destroy(collision.gameObject); //удалили ключ
 			int i = dataBank.idLv - 1;
 			dataBank.score[i] = coins;
+			
             print("Количество монет: " + coins); //добавили монету в карман (счетчик на экране)
         }
 
@@ -145,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
 			dataBank.isgame = false;
 
 		}
-		if (collision.gameObject.tag == "Finish") //если столкнулись с ключем
+		if (collision.gameObject.tag == "end") //если столкнулись с ключем
 		{
 			
 			for(int i=0; i<5; i++)

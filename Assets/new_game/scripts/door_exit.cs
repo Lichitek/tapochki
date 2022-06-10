@@ -20,6 +20,7 @@ public class door_exit : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E) && playerInRange)
         {
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
@@ -28,6 +29,9 @@ public class door_exit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            int n = dataBank.idLv - 1;
+            print(dataBank.score[n]);
+            print(dataBank.idLv - 1);
             playerInRange = true;
         }
     }

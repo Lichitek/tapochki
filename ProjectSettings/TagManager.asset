@@ -14,6 +14,7 @@ TagManager:
   - movingSlab
   - Mirror
   - ground
+  - end
   layers:
   - Default
   - TransparentFX

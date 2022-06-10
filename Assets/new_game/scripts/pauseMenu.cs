@@ -14,7 +14,8 @@ public class pauseMenu : MonoBehaviour
 
     private void Start()
     {
-        dataBank.nameLv = SceneManager.GetActiveScene().name;    
+        dataBank.nameLv = SceneManager.GetActiveScene().name;
+        dataBank.idLv = SceneManager.GetActiveScene().buildIndex;
     }
     void Update()
     {

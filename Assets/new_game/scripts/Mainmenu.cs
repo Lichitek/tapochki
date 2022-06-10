@@ -11,6 +11,6 @@ public class Mainmenu : MonoBehaviour
     }
     public void QuiteGame()
     {
-        Debug.Log("Quite");
+        Application.Quit();
     }
 }

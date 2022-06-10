@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/new_game/new_scence/lev5.unity
     guid: 7d57ce6044f4b9f4a8b955b8292f79d8
+  - enabled: 1
+    path: Assets/new_game/new_scence/Hab.unity
+    guid: 873475179422ae145b4a15165d1ba86e
   m_configObjects: {}

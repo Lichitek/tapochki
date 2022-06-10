@@ -4,16 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
+
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;							
-	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			
+	[SerializeField] private float m_JumpForce = 400f;									
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	
 	[SerializeField] private bool m_AirControl = false;							
 	[SerializeField] private LayerMask m_WhatIsGround;							
-	[SerializeField] private Transform m_GroundCheck;							
-	[SerializeField] private Transform m_CeilingCheck;							
-	[SerializeField] private Collider2D m_CrouchDisableCollider;				
+	[SerializeField] private Transform m_GroundCheck;																	
 	const float k_GroundedRadius = .2f; 
 	private bool m_Grounded;            
 	private Rigidbody2D m_Rigidbody2D;
@@ -133,7 +131,8 @@ public class CharacterController2D : MonoBehaviour
         {
             coins++; //(ведем счет монет)
             Destroy(collision.gameObject); //удалили ключ
-			dataBank.score[0] = coins;
+			int i = dataBank.idLv - 1;
+			dataBank.score[i] = coins;
             print("Количество монет: " + coins); //добавили монету в карман (счетчик на экране)
         }
 
@@ -144,10 +143,16 @@ public class CharacterController2D : MonoBehaviour
 			dataBank.isgame = false;
 
 		}
-		if(collision.gameObject.tag=="movingSlab")
-        {
-			//m_GroundCheck.GetComponent<CircleCollider2D>().enabled = false;
-        }
+		if (collision.gameObject.tag == "Finish") //если столкнулись с ключем
+		{
+			
+			for(int i=0; i<5; i++)
+            {
+				coins += dataBank.score[i];
+            }
+
+		}
+
 
 	}
 }

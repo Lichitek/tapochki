@@ -7,6 +7,7 @@ public class LaserBeam
     Vector3 pos, dir;
 
     public GameObject laserObj;
+    public static GameObject door;
     LineRenderer laser;
     List<Vector3> laserIndices = new List<Vector3>();
 
@@ -67,7 +68,14 @@ public class LaserBeam
 
             CastRay(pos, dir, laser);
         }
-       
+        if (hitInfo.collider.gameObject.tag == "Finish")
+        {
+            door.SetActive(false);
+            laserIndices.Add(hitInfo.point);
+            UpdateLaser();
+        }
+
+
         else
         {
             laserIndices.Add(hitInfo.point);

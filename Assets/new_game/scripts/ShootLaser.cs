@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShootLaser : MonoBehaviour
 {
     public float angle;
+    public GameObject door;
 
     public Material material;
     LaserBeam beam;
@@ -12,6 +13,7 @@ public class ShootLaser : MonoBehaviour
     void Start()
     {
         //transform.eulerAngles = new Vector3(0, 0, angle);
+        LaserBeam.door = door;
         
     }
 
@@ -21,7 +23,7 @@ public class ShootLaser : MonoBehaviour
             Destroy(beam.laserObj);
         if(Time.timeScale!=0)
         {
-            beam = new LaserBeam(gameObject.transform.position, gameObject.transform.right, material);
+            beam = new LaserBeam(gameObject.transform.position, gameObject.transform.up, material);
         }
         //beam = new LaserBeam(gameObject.transform.position, gameObject.transform.right, material);
     }

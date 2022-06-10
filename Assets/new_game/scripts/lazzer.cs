@@ -31,8 +31,8 @@ public class lazzer : MonoBehaviour
 
     void Draw2DRay(Vector2 strt, Vector2 end)
     {
-        m_linerender.SetPosition(0, strt);
-        m_linerender.SetPosition(0, end);
+        m_linerender.SetPosition((int)transform.position.x, strt);
+        m_linerender.SetPosition((int)transform.position.x, end);
 
     }
 }

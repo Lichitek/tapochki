@@ -13,4 +13,14 @@ public class Mainmenu : MonoBehaviour
     {
         Application.Quit();
     }
+    public void Continue()
+    {
+        string level = dataBank.nameLv;
+        if(level!="")
+        {
+            SceneManager.LoadScene(level);
+        }
+
+    }
+
 }

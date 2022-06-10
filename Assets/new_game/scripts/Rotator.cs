@@ -6,6 +6,8 @@ public class Rotator : MonoBehaviour
 {
     public float rotationSpeed = 100.0f;
     public GameObject laser;
+    public GameObject hint1;
+    public GameObject hint2;
     bool playerInRange = false;
 
     void Update()
@@ -24,10 +26,8 @@ public class Rotator : MonoBehaviour
         
         //float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
 
-        // Make it move 10 meters per second instead of 10 meters per frame...
         rotation *= Time.deltaTime;
 
-        // Rotate around our y-axis
         laser.transform.Rotate(0, 0, rotation);
     }
 
@@ -36,6 +36,8 @@ public class Rotator : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            hint1.SetActive(true);
+            hint2.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -43,7 +45,8 @@ public class Rotator : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            //hintBox.SetActive(false);
+            hint1.SetActive(false);
+            hint2.SetActive(false);
         }
     }
 }

@@ -49366,7 +49366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682121938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.97, y: 1.24, z: -2.5371842}
+  m_LocalPosition: {x: -10.87, y: 1.29, z: -2.5371842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 756515305}
@@ -50053,7 +50053,7 @@ GameObject:
   - component: {fileID: 819505129}
   - component: {fileID: 819505128}
   m_Layer: 0
-  m_Name: strange_door_closed_anim_strip_10_0 (1)
+  m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

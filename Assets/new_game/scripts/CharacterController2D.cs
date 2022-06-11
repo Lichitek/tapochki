@@ -126,15 +126,38 @@ public class CharacterController2D : MonoBehaviour
 		transform.localScale = theScale;
 	}
 
+
+
+
 	private void OnTriggerEnter2D(Collider2D collision) 
     {
         
         if (collision.gameObject.tag == "Coin") 
         {
             coins++; //(ведем счет монет)
+			dataBank.extra++;
             Destroy(collision.gameObject); //удалили ключ
 			int i = dataBank.idLv - 1;
-			dataBank.score[i] = coins;
+            switch (i)
+            {
+				case 0:
+					dataBank.score1 = coins;
+					return;
+				case 1:
+					dataBank.score2 = coins;
+					return;
+				case 2:
+					dataBank.score3 = coins;
+					return;
+				case 3:
+					dataBank.score4 = coins;
+					return;
+				case 4:
+					dataBank.score5 = coins;
+					return;
+			}
+
+
 			
             print("Количество монет: " + coins); //добавили монету в карман (счетчик на экране)
         }
@@ -148,11 +171,8 @@ public class CharacterController2D : MonoBehaviour
 		}
 		if (collision.gameObject.tag == "end") //если столкнулись с ключем
 		{
-			
-			for(int i=0; i<5; i++)
-            {
-				coins += dataBank.score[i];
-            }
+			//coins = dataBank.extra;
+			coins = dataBank.score1 + dataBank.score2 + dataBank.score3 + dataBank.score4 + dataBank.score5;
 
 		}
 

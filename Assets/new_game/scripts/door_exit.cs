@@ -30,8 +30,6 @@ public class door_exit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             int n = dataBank.idLv - 1;
-            print(dataBank.score[n]);
-            print(dataBank.idLv - 1);
             playerInRange = true;
         }
     }
